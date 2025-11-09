@@ -13,8 +13,8 @@ body {
     background-color: #f5fafd; 
     color: #333;
     line-height: 1.6;
-    position: relative; /* Необхідно для позиціонування фонових фігур */
-    min-height: 100vh; /* Гарантуємо, що тіло займає всю висоту для фігур */
+    position: relative; 
+    min-height: 100vh; 
 }
 
 /* ДОДАТКОВІ ФОНОВІ ГЕОМЕТРИЧНІ ФІГУРИ (для усунення відчуття пустоти) */
@@ -29,7 +29,7 @@ body::before {
     height: 300px;
     border-radius: 50% 50% 50% 0; /* Крапля */
     background: #008cba;
-    opacity: 0.05; /* Дуже прозорий, щоб не відволікати */
+    opacity: 0.05; 
     z-index: 0;
 }
 
@@ -58,7 +58,7 @@ body::after {
     border-radius: 50%; 
     background: #006994;
     opacity: 0.04;
-    z-index: -2; /* Нижче за інші декоративні елементи */
+    z-index: -2; 
 }
 
 
@@ -74,7 +74,7 @@ header {
     text-align: center;
     padding: 1.5rem 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative; /* Щоб з'являвся над фоновими фігурами */
+    position: relative; 
     z-index: 10;
 }
 
@@ -84,6 +84,8 @@ header {
     align-items: center;
     justify-content: center;
     gap: 15px; 
+    flex-wrap: wrap; /* Дозволяє елементам переноситися */
+    padding: 0 10px; 
 }
 
 /* Стилі для логотипу */
@@ -93,21 +95,26 @@ header {
     border-radius: 50%; 
     object-fit: cover;
     border: 2px solid white;
+    flex-shrink: 0; 
 }
 
 header h1 {
     margin: 0; 
     color: white; 
+    text-align: center;
+    min-width: 0; 
 }
 
+/* АДАПТИВНА НАВІГАЦІЯ */
 nav {
     display: flex;
     justify-content: center;
     gap: 2.5rem; 
     background: #004d6e;
     padding: 1rem 0;
-    position: relative; /* Щоб з'являвся над фоновими фігурами */
+    position: relative; 
     z-index: 10;
+    flex-wrap: wrap; 
 }
 
 nav a {
@@ -117,6 +124,9 @@ nav a {
     padding: 0.5rem 1rem;
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-grow: 1; 
+    text-align: center;
+    min-width: fit-content;
 }
 
 nav a:hover {
@@ -125,32 +135,17 @@ nav a:hover {
     transform: translateY(-2px); 
 }
 
-/* ГЕРОЙ-СЕКЦІЯ (СТИЛІ ЗАЛИШЕНІ НА ВИПАДОК, ЯКЩО БУДЕ ПОВЕРНЕННЯ) */
-.hero {
-    width: 100%;
-    height: 60vh;
-    overflow: hidden;
-    position: relative;
-}
-
-.hero img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
 /* ОСНОВНИЙ КОНТЕНТ */
 .content {
     max-width: 1200px;
     margin: 3rem auto;
     padding: 0 1.5rem;
     position: relative; 
-    z-index: 1; /* Контент завжди зверху */
+    z-index: 1; 
 }
 
-/* ДЕКОРАТИВНІ ЕЛЕМЕНТИ (Виступи, які ви просили раніше) */
-.content::after { /* Залишаємо лише один виступ, бо другий псевдоелемент body::after вже зайнятий */
+/* ДЕКОРАТИВНІ ЕЛЕМЕНТИ (Виступи) */
+.content::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -163,16 +158,6 @@ nav a:hover {
     box-shadow: 0 5px 15px rgba(0, 77, 110, 0.15); 
     z-index: -1; 
     opacity: 0.7; 
-}
-
-@media (max-width: 1250px) {
-    /* Приховуємо декоративні виступи та більшість фонових фігур, коли контенту стає тісно */
-    .content::after,
-    body::before,
-    body::after,
-    .content::before {
-        display: none;
-    }
 }
 
 
@@ -222,7 +207,7 @@ nav a:hover {
     margin-top: 10px;
 }
 
-/* Декоративні хвилясті рамки (ПСЕВДОЕЛЕМЕНТИ) */
+/* Декоративні хвилясті рамки */
 .swans-block::before,
 .swans-block::after {
     content: '';
@@ -317,7 +302,7 @@ footer {
     padding: 1.5rem;
     margin-top: 4rem;
     position: relative;
-    z-index: 10; /* Піднімаємо над фоновими фігурами */
+    z-index: 10; 
 }
 
 /* LIGHTBOX (МОДАЛЬНЕ ВІКНО) СТИЛІ */
@@ -392,4 +377,44 @@ footer {
     color: #ccc;
     padding: 10px 0;
     min-height: 40px;
+}
+
+/* МЕДІА-ЗАПИТИ ДЛЯ МОБІЛЬНИХ */
+@media (max-width: 1250px) {
+    /* Приховуємо декоративні виступи та більшість фонових фігур, коли контенту стає тісно */
+    .content::after,
+    body::before,
+    body::after,
+    .content::before {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    /* ЗМЕНШУЄМО РОЗМІР ШАПКИ НА МАЛЕНЬКИХ ЕКРАНАХ */
+    .logo {
+        width: 50px; 
+        height: 50px;
+    }
+
+    header h1 {
+        font-size: 1.5rem; /* Зменшуємо розмір заголовка */
+        line-height: 1.2;
+    }
+    
+    .header-content {
+        /* Якщо заголовок і логотип не поміщаються, вирівнюємо їх по центру у стовпчик */
+        flex-direction: column;
+        gap: 5px;
+        padding-top: 5px;
+    }
+
+    /* Навігація в стовпчик */
+    nav {
+        gap: 0.5rem;
+    }
+    nav a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
 }
