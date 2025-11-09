@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Місця & Легенди — Світязь</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="images/logo-drop.jpg" alt="Логотип: Крапля" class="logo" />
+            <h1>Світязь — Перлина Волині 🏞️</h1>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Головна</a>
+        <a href="gallery.html">Галерея</a>
+        <a href="fauna.html">Флора & Фауна</a>
+        <a href="places.html">Місця & Легенди</a>
+    </nav>
+    
+    <div class="content">
+        <h2> Мальовничі місця та легенди Світязя</h2>
+        <p>
+            Світязь — це не лише кришталева вода, а й край, овіяний давніми переказами, що додають цьому місцю особливого містичного шарму.
+        </p>
+
+        <h3>Острів: Серце озера</h3>
+        <p>
+            Острів — найвідоміше місце на Світязі. Він розташований ближче до північного берега і є ідеальним місцем для усамітнення та спостереження за природою. Це залишок давнього суходолу, що не був затоплений водою.
+        </p>
+        
+        <h3>Легенда про Світязянку</h3>
+        <p>
+            Найвідоміша легенда розповідає про затоплене місто, яке пішло під воду, коли його жителі відмовилися здатися ворогам. Місто перетворилося на озеро, а його жителі — на прекрасні квіти, які називаються "світязянки" (за однією з версій, це біле латаття). Це символ чистоти та нескореності.
+        </p>
+        
+        <div class="gallery">
+            <div class="gallery-item"><img src="images/island.jpg" alt="Острів на Світязі" class="gallery-img" /></div>
+            <div class="gallery-item"><img src="images/boat.jpg" alt="Човен на озері" class="gallery-img" /></div>
+            <div class="gallery-item"><img src="images/svityazjanka.jpg" alt="Світязянка (символічне зображення)" class="gallery-img" /></div>
+            <div class="gallery-item"><img src="images/submerged-city.jpg" alt="Затоплене місто (міф)" class="gallery-img" /></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&#169; 2025 Світязь. Усі права захищено. Створено з любов'ю до природи.</p>
+    </footer>
+
+    <div id="lightbox-modal" class="lightbox-modal" onclick="closeModal(event)">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+             <img id="lightbox-img" alt="Збільшене зображення" />
+             <div id="lightbox-caption"></div>
+        </div>
+    </div>
+    
+    <script>
+        function openModal(imgElement) {
+            const modal = document.getElementById('lightbox-modal');
+            const modalImg = document.getElementById('lightbox-img');
+            const captionText = document.getElementById('lightbox-caption');
+            
+            modal.style.display = "block";
+            modalImg.src = imgElement.src;
+            captionText.innerHTML = imgElement.alt;
+        }
+
+        function closeModal(event) {
+             const modal = document.getElementById('lightbox-modal');
+             if (event.target.classList.contains('lightbox-modal') || event.target.classList.contains('lightbox-close')) {
+                modal.style.display = "none";
+             }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.gallery-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+
+            images.forEach(img => {
+                img.onclick = () => openModal(img);
+            });
+            
+            closeBtn.onclick = (event) => closeModal(event);
+            
+            document.onkeydown = (e) => {
+                if (e.key === "Escape" && document.getElementById('lightbox-modal').style.display === "block") {
+                    document.getElementById('lightbox-modal').style.display = "none";
+                }
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+/* Підключення зовнішніх шрифтів */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+/* ОСНОВНІ СТИЛІ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5fafd; 
+    color: #333;
+    line-height: 1.6;
+    position: relative; /* Необхідно для позиціонування фонових фігур */
+    min-height: 100vh; /* Гарантуємо, що тіло займає всю висоту для фігур */
+}
+
+/* ДОДАТКОВІ ФОНОВІ ГЕОМЕТРИЧНІ ФІГУРИ (для усунення відчуття пустоти) */
+
+/* Велика крапля (ліворуч вгорі) */
+body::before {
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 50% 50% 50% 0; /* Крапля */
+    background: #008cba;
+    opacity: 0.05; /* Дуже прозорий, щоб не відволікати */
+    z-index: 0;
+}
+
+/* Середнє коло (праворуч посередині) */
+body::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: #004d6e;
+    opacity: 0.03;
+    z-index: 0;
+}
+
+/* Третя пляма (ліворуч внизу) */
+.content::before {
+    content: '';
+    position: absolute;
+    bottom: -100px; 
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%; 
+    background: #006994;
+    opacity: 0.04;
+    z-index: -2; /* Нижче за інші декоративні елементи */
+}
+
+
+h1, h2, h3 {
+    font-family: 'Merriweather', serif; 
+    color: #004d6e;
+}
+
+/* ХЕДЕР ТА НАВІГАЦІЯ */
+header {
+    background: #006994;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Щоб з'являвся над фоновими фігурами */
+    z-index: 10;
+}
+
+/* Контейнер для центрування і вирівнювання заголовка та логотипу */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; 
+}
+
+/* Стилі для логотипу */
+.logo {
+    width: 60px; 
+    height: 60px;
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+header h1 {
+    margin: 0; 
+    color: white; 
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem; 
+    background: #004d6e;
+    padding: 1rem 0;
+    position: relative; /* Щоб з'являвся над фоновими фігурами */
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500; 
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+    background-color: #008cba;
+    color: #ffffff;
+    transform: translateY(-2px); 
+}
+
+/* ГЕРОЙ-СЕКЦІЯ (СТИЛІ ЗАЛИШЕНІ НА ВИПАДОК, ЯКЩО БУДЕ ПОВЕРНЕННЯ) */
+.hero {
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ОСНОВНИЙ КОНТЕНТ */
+.content {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    position: relative; 
+    z-index: 1; /* Контент завжди зверху */
+}
+
+/* ДЕКОРАТИВНІ ЕЛЕМЕНТИ (Виступи, які ви просили раніше) */
+.content::after { /* Залишаємо лише один виступ, бо другий псевдоелемент body::after вже зайнятий */
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -120px; 
+    transform: translateY(-50%) rotate(5deg); 
+    width: 100px; 
+    height: 200px; 
+    background-color: #e0f2f1; 
+    border-radius: 10px; 
+    box-shadow: 0 5px 15px rgba(0, 77, 110, 0.15); 
+    z-index: -1; 
+    opacity: 0.7; 
+}
+
+@media (max-width: 1250px) {
+    /* Приховуємо декоративні виступи та більшість фонових фігур, коли контенту стає тісно */
+    .content::after,
+    body::before,
+    body::after,
+    .content::before {
+        display: none;
+    }
+}
+
+
+/* Решта стилів контенту */
+.content h2 {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #006994;
+    padding-bottom: 0.5rem;
+}
+
+.content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    color: #555;
+}
+
+/* НОВІ СТИЛІ: БЛОК ЛЕБЕДІВ (для index.html) */
+.swans-block {
+    text-align: center;
+    padding: 30px 20px;
+    margin: 2rem auto;
+    max-width: 800px; 
+    border-radius: 15px;
+    
+    position: relative;
+    border: 3px solid #b2ebf2; 
+    box-shadow: 0 0 20px rgba(0, 77, 110, 0.1); 
+    overflow: hidden; 
+}
+
+.swans-block img {
+    max-width: 80%; 
+    height: auto;
+    max-height: 50vh; 
+    border-radius: 10px; 
+    margin: 15px auto; 
+    display: block;
+    object-fit: contain; 
+    border: 5px solid white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.swans-block p {
+    text-align: center; 
+    font-style: italic;
+    color: #004d6e;
+    margin-top: 10px;
+}
+
+/* Декоративні хвилясті рамки (ПСЕВДОЕЛЕМЕНТИ) */
+.swans-block::before,
+.swans-block::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 100%;
+    top: 0;
+    
+    background: radial-gradient(circle at 100% 50%, transparent 20px, #008cba 20px);
+    background-size: 20px 40px;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.swans-block::before {
+    left: -20px;
+    transform: scaleX(-1); 
+}
+
+.swans-block::after {
+    right: -20px;
+}
+
+
+/* ГАЛЕРЕЯ (Використовується на gallery.html та fauna.html) */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding-top: 1rem;
+}
+
+/* Спеціальний контейнер для сторінки Fauna, що вміщує зображення та опис */
+.gallery-column {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.gallery-item {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer; 
+    background-color: white; 
+    border-bottom: 3px solid #b2ebf2; 
+    
+    padding-bottom: 66.6%; 
+}
+
+.gallery-column:hover .gallery-item {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.gallery-item img {
+    width: 100%; 
+    height: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain; 
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05); 
+}
+
+/* Блок опису для сторінки Фауна */
+.caption-block {
+    padding: 15px;
+    background-color: #e0f2f1; 
+    text-align: left;
+    flex-grow: 1; 
+}
+.caption-block p {
+    font-size: 0.95rem;
+    color: #333;
+    margin: 0;
+    line-height: 1.4;
+}
+
+
+/* ФУТЕР */
+footer {
+    background: #004d6e;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 10; /* Піднімаємо над фоновими фігурами */
+}
+
+/* LIGHTBOX (МОДАЛЬНЕ ВІКНО) СТИЛІ */
+.lightbox-modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000; 
+    padding-top: 60px; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9); 
+}
+
+/* Контент всередині модального вікна */
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh; 
+    overflow-y: auto; 
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+/* Зображення всередині модального вікна */
+.lightbox-content img {
+    max-height: 80vh; 
+    width: auto; 
+    max-width: 100%; 
+    object-fit: contain; 
+    display: block; 
+    margin: auto; 
+    transform: none !important; 
+}
+
+/* Кнопка закриття */
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Анімація */
+@keyframes zoom {
+    from {transform: scale(0.1)} 
+    to {transform: scale(1)}
+}
+
+/* Стилі для підпису */
+#lightbox-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    min-height: 40px;
+}
