@@ -11,7 +11,7 @@
             padding: 15px;
             border: 1px solid #e0f2f1;
             border-radius: 8px;
-            margin-top: -15px; /* Підтягуємо до галереї */
+            margin-top: -15px;
             background-color: #f5fafd;
             text-align: left;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -56,7 +56,7 @@
         
         <div class="gallery">
             <div class="gallery-column">
-                <div class="gallery-item"><img src="images/eel.jpg" alt="Вугор європейський" class="gallery-img" /></div>
+                <div class="gallery-item"><img src="images/eel.png" alt="Вугор європейський" class="gallery-img" /></div>
                 <div class="caption-block">
                     <p>
                         Вугор європейський (*Anguilla anguilla*). Ця хижа риба має змієподібне тіло та є одним із найцінніших і рідкісних видів Світязя. Вугри мігрують на нерест аж до Саргасового моря, що підкреслює унікальність цього виду в озері.
@@ -65,7 +65,17 @@
             </div>
             
             <div class="gallery-column">
-                <div class="gallery-item"><img src="images/white-lily.jpg" alt="Латаття біле (Nymphaea alba)" class="gallery-img" /></div>
+                <div class="gallery-item">
+                    <img src="images/fish.gif" alt="Карась Світязя у русі" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
+                </div>
+                <div class="caption-block">
+                    <p>
+                        **Озерний Карась Світязя**. Типовий мешканець мілководних та зарослих ділянок озера. На відміну від вугра, карась є одним із найпоширеніших видів, що забезпечує біорізноманіття. Його анімаційне відображення підкреслює жваве життя під поверхнею води.
+                    </p>
+                </div>
+            </div>
+            <div class="gallery-column">
+                <div class="gallery-item"><img src="images/white-lily.png" alt="Латаття біле (Nymphaea alba)" class="gallery-img" /></div>
                 <div class="caption-block">
                     <p>
                         Латаття біле (*Nymphaea alba*). Ця рослина, занесена до Червоної книги, є символом чистих водойм. Її великі білі квітки розкриваються вранці та прикрашають мілководдя Світязя в літні місяці.
@@ -74,7 +84,7 @@
             </div>
             
             <div class="gallery-column">
-                <div class="gallery-item"><img src="images/swans.jpg" alt="Лебеді на озері" class="gallery-img" /></div>
+                <div class="gallery-item"><img src="images/swans.png" alt="Лебеді на озері" class="gallery-img" /></div>
                 <div class="caption-block">
                     <p>
                         Лебеді-шипуни. Ці граціозні птахи є невід'ємною частиною пейзажів Світязя. Вони гніздяться у заростях очерету та є показником здорової екологічної системи озера. Часто зустрічаються великими сімейними групами.
@@ -83,7 +93,7 @@
             </div>
             
             <div class="gallery-column">
-                <div class="gallery-item"><img src="images/mollusk-algae.jpg" alt="Молюск і водорості" class="gallery-img" /></div>
+                <div class="gallery-item"><img src="images/mollusk-algae.png" alt="Молюск і водорості" class="gallery-img" /></div>
                 <div class="caption-block">
                     <p>
                         Двостулковий молюск (перлівниця). На зображенні велика мідієподібна ракушка, представник родин перлівницевих. Ці молюски є природними фільтрами, які активно очищують воду Світязя, сприяючи її кришталевій прозорості.
@@ -120,12 +130,13 @@
         function closeModal(event) {
              const modal = document.getElementById('lightbox-modal');
              if (event.target.classList.contains('lightbox-modal') || event.target.classList.contains('lightbox-close')) {
-                modal.style.display = "none";
+                 modal.style.display = "none";
              }
         }
         
         document.addEventListener('DOMContentLoaded', () => {
-            const images = document.querySelectorAll('.gallery-img');
+            // Змінено селектор, щоб виключити гіфку з лайтбоксу
+            const images = document.querySelectorAll('.gallery-img'); 
             const closeBtn = document.querySelector('.lightbox-close');
 
             images.forEach(img => {
